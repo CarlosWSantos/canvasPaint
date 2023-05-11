@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas Paint</title>
+	<style type="text/css">
+	  .menu {
+	  height: 100%;
+	  width: 0;
+	  position: fixed;
+	  z-index: 1;
+	  top: 0;
+	  left: 0;
+	  background-color: #111;
+	  overflow-x: hidden;
+	  transition: 0.5s;
+	  padding-top: 60px;
+	}
+
+	.menu a {
+	  padding: 8px 8px 8px 32px;
+	  text-decoration: none;
+	  font-size: 25px;
+	  color: #818181;
+	  display: block;
+	  transition: 0.3s;
+	}
+
+	.menu a:hover {
+	  color: #f1f1f1;
+	}
+
+	.menu .fechar {
+	  position: absolute;
+	  top: 0;
+	  right: 25px;
+	  font-size: 36px;
+	  margin-left: 50px;
+	}
+
+	@media screen and (max-height: 450px) {
+	  .menu {padding-top: 15px; border-radius: 40%; background-color: white; color: white;}
+	  .menu a {font-size: 18px;}
+	}
+		#body
+		{
+			background-color: gray;
+		}
+		#canvas
+		{
+			background-color: white;
+			margin: 5px solid black;
+		}
+		.texto-dentro
+		{
+			position: relative;
+			color: white;
+			font-family: Comic Sans MS, Comic Sans, cursive;
+		}
+		.texto-fora
+		{
+			font-family: Comic Sans MS, Comic Sans, cursive;	
+		}
+		#apagarB
+		{
+			position: relative;
+			left: 40px;
+			width: 150px;
+			height: 37px;
+			background-color:rgb(89, 181, 238);
+			border-radius: 8px;
+		}
+		#q
+		{
+			background-color:rgb(89, 181, 238);
+			border-radius: 8px;
+		}
+		.q
+		{
+			left: 40px;
+			position: relative;
+			height: 37px;
+			width: 150px;
+			background-color:rgb(89, 181, 238);
+			border-radius: 8px;
+		}
+		#mode
+		{
+			background-color:rgb(89, 181, 238);
+			border-radius: 8px;
+		}
+		#colorMaxInput
+		{
+			border-radius: 8px;
+			border-color: black;
+		}
+		.another-gen-button
+		{
+			border-radius: 8px; 
+			border-color: black;
+		}
+	</style>
+</head>
+<body id="body" onclick="getColor()">
+	<div id="menu" class="menu" onmouseleave="closeNav()">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <p class="texto-dentro"><button id="apagarB" onclick="limpar()">Apagar tudo</button><button class="q" id="q" onclick="aumentarDiminuirGrossura(999999)">Grossura padrão</button><button onclick="convertCanvasToImage()" class="q">Preview</button><button onclick="changeLineType()" id="lineTypeBtn" class="q">Linha: Reta</button></p>
+  <form><label id="userImgText" for="userImg" class="texto-dentro">Url da imagem para modo imagem:</label><input class="another-gen-button" type="url" id="userImg" name="userImg"></input></form><form><label for="colorMax" class="texto-dentro" id="maxRandom">Valor máximo para modo Random:</label><input type="number" name="colorMax" min="1" max="255" value="255" id="colorMaxInput"></form>
+</div>
+
+<span style="font-size:30px;cursor:pointer; background-color: blue; border-radius: 60%; width: 100px; height: 100px" onclick="openNav()"><p>&#9776;</p></span>
+		<img id="preview" style="width: 1px; height: 1px; position: absolute; z-index: 2;">
+		<p><button id="mode" onclick="modeChange()">Modo: Lápis</button><form><label class="texto-fora" for="gross" id="thick">Grossura:</label>
+  <input type="range" id="gross" min="1" max="400" value="20" 
+   oninput="aumentarDiminuirGrossura(this.value)" onchange="aumentarDiminuirGrossura(this.value)"></form><form><label for="favcolor" class="texto-fora" id="color">Cor:</label><input type="color" id="cor" name="favcolor" value="#000000"></input><label></label><br></form><form><label for="userText" class="texto-fora" id="textSentence">Texto para o modo 'texto':</label><input class="another-gen-button" type="text" name="userText" id="userText" value="Sample Text"></form></p>
+<canvas id="canvas" width="1000" height="490"></canvas>
+
+<script src="defasagem.js"></script>
+</body>
+</html>
